@@ -34,7 +34,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 STonX is a software emulator, which runs on Unix workstations with the
-X Window system%{!?_without_svga: or svgalib}, and emulates an Atari ST computer.
+X Window system%{!?_without_svga: or svgalib}, and emulates an Atari
+ST computer.
 
 %description -l pl
 STonX jest programowym emulatorem komputera Atari ST, dzia³aj±cym na
