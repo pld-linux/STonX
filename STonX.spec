@@ -82,13 +82,17 @@ rm -rf $RPM_BUILD_ROOT
 if [ -x /usr/X11R6/bin/mkfontdir ]; then
 	(cd /usr/share/fonts/misc; /usr/X11R6/bin/mkfontdir)
 fi
-killall -USR1 xfs >/dev/null 2>&1 ||:
+if [ -f /var/lock/subsys/xfs ]; then
+	/etc/rc.d/init.d/xfs reload
+else
 
 %postun
 if [ -x /usr/X11R6/bin/mkfontdir ]; then
 	(cd /usr/share/fonts/misc; /usr/X11R6/bin/mkfontdir)
 fi
-killall -USR1 xfs >/dev/null 2>&1 ||:
+if [ -f /var/lock/subsys/xfs ]; then
+	/etc/rc.d/init.d/xfs reload
+else
 
 %files
 %defattr(644,root,root,755)
