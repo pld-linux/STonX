@@ -1,0 +1,9 @@
+--- STonX-0.6.5/data/makefonts.sh.orig	Tue Nov 28 13:10:04 1995
++++ STonX-0.6.5/data/makefonts.sh	Thu Aug 30 21:58:30 2001
+@@ -3,6 +3,3 @@
+ ../fnttobdf <$i | bdftopcf > `basename $i .fnt`.pcf
+ ../fnttobdf -tr <$i | bdftopcf > `basename $i .fnt`-iso.pcf
+ done
+-mkfontdir .
+-xset fp+ `pwd`
+-xset fp rehash
