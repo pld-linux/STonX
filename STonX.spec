@@ -18,6 +18,7 @@ Release:	1
 License:	GPL (except TOS image)
 Group:		Applications/Emulators
 Source0:	http://www.complang.tuwien.ac.at/nino/stonx/%{name}-%{version}.tar.gz
+# Source0-md5:	54ce49f5a64f0e7779000245a9b903a6
 # to use TOS image legally, one probably must own real Atari ST...
 Source1:	%{tosarchname}
 NoSource:	1
