@@ -3,7 +3,7 @@
 # _without_svga		without svgalib support
 #
 
-%ifnarch %{ix86}
+%ifnarch %{ix86} alpha
 %define _without_svga 1
 %endif
 
@@ -73,8 +73,6 @@ cd %{_libdir}/STonX
 exec ./stonx
 EOF
 
-gzip -9nf docs/{PROGRAMS,README,RELEASE_NOTES,TOS-VERSIONS}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -96,7 +94,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc docs/*.gz
+%doc docs/{PROGRAMS,README,RELEASE_NOTES,TOS-VERSIONS}
 %attr(755,root,root) %{_bindir}/*
 %dir %{_libdir}/STonX
 %attr(755,root,root) %{_libdir}/STonX/stonx
