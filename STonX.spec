@@ -1,12 +1,7 @@
 #
 # Conditional build:
-# _without_svga		without svgalib support
+%bcond_without	svga	# without svgalib support
 #
-
-%ifnarch %{ix86} alpha
-%define _without_svga 1
-%endif
-
 %define		tosarchname	tos206us.zip
 %define		tosfilename	Tos206.img
 
@@ -26,7 +21,7 @@ Patch0:		%{name}-nox.patch
 Patch1:		%{name}-svga.patch
 URL:		http://www.complang.tuwien.ac.at/nino/stonx.html
 BuildRequires:	XFree86-devel
-%{!?_without_svga:BuildRequires:	svgalib-devel}
+%{?with_svga:BuildRequires:	svgalib-devel}
 BuildRequires:	autoconf
 BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -34,12 +29,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 STonX is a software emulator, which runs on Unix workstations with the
-X Window system%{!?_without_svga: or svgalib}, and emulates an Atari
+X Window system%{?with_svga: or svgalib}, and emulates an Atari
 ST computer.
 
 %description -l pl
 STonX jest programowym emulatorem komputera Atari ST, dzia³aj±cym na
-Uniksach z X Window System%{!?_without_svga: lub svgalib}.
+Uniksach z X Window System%{?with_svga: lub svgalib}.
 
 %prep
 %setup -q -a1
@@ -55,7 +50,7 @@ mv -f %{tosfilename} tos.img
 %{__make} \
 	OPT="%{rpmcflags}" \
 	REGS="%{!?debug:-fomit-frame-pointer}" \
-	%{!?_without_svga:USE_SVGALIB=1}
+	%{?with_svga:USE_SVGALIB=1}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -70,7 +65,7 @@ cat > $RPM_BUILD_ROOT%{_bindir}/stonx <<EOF
 #!/bin/sh
 cd %{_libdir}/STonX
 
-%{!?_without_svga:if [ -z "\$DISPLAY" ]; then exec ./stonx -svga ; fi}
+%{?with_svga:if [ -z "\$DISPLAY" ]; then exec ./stonx -svga ; fi}
 exec ./stonx
 EOF
 
