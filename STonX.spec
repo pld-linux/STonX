@@ -86,7 +86,7 @@ if [ -x /usr/X11R6/bin/mkfontdir ]; then
 fi
 if [ -f /var/lock/subsys/xfs ]; then
 	/etc/rc.d/init.d/xfs reload
-else
+fi
 
 %postun
 if [ -x /usr/X11R6/bin/mkfontdir ]; then
@@ -94,7 +94,7 @@ if [ -x /usr/X11R6/bin/mkfontdir ]; then
 fi
 if [ -f /var/lock/subsys/xfs ]; then
 	/etc/rc.d/init.d/xfs reload
-else
+fi
 
 %files
 %defattr(644,root,root,755)
