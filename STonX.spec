@@ -61,7 +61,9 @@ autoconf
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir}/STonX,%{_bindir},%{_fontsdir}/misc}
+
 install stonx tos.img cartridge.img Keysyms $RPM_BUILD_ROOT%{_libdir}/STonX
+
 gzip -9nf data/*.pcf
 install data/*.pcf.gz $RPM_BUILD_ROOT%{_fontsdir}/misc
 
