@@ -48,7 +48,7 @@ Uniksach z X Window System%{!?_without_svga: lub svgalib}.
 mv -f %{tosfilename} tos.img
 
 %build
-autoconf
+%{__autoconf}
 %configure
 
 %{__make} \
