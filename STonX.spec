@@ -30,7 +30,6 @@ BuildRequires:	autoconf
 BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
 
 %description
 STonX is a software emulator, which runs on Unix workstations with the
