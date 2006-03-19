@@ -21,16 +21,16 @@ Patch0:		%{name}-nox.patch
 Patch1:		%{name}-svga.patch
 URL:		http://www.complang.tuwien.ac.at/nino/stonx.html
 BuildRequires:	XFree86-devel
-%{?with_svga:BuildRequires:	svgalib-devel}
 BuildRequires:	autoconf
+BuildRequires:	rpmbuild(macros) >= 1.268
+%{?with_svga:BuildRequires:	svgalib-devel}
 BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-
 %description
 STonX is a software emulator, which runs on Unix workstations with the
-X Window system%{?with_svga: or svgalib}, and emulates an Atari
-ST computer.
+X Window system%{?with_svga: or svgalib}, and emulates an Atari ST
+computer.
 
 %description -l pl
 STonX jest programowym emulatorem komputera Atari ST, dzia³aj±cym na
@@ -61,11 +61,11 @@ install stonx tos.img cartridge.img Keysyms $RPM_BUILD_ROOT%{_libdir}/STonX
 gzip -9nf data/*.pcf
 install data/*.pcf.gz $RPM_BUILD_ROOT%{_fontsdir}/misc
 
-cat > $RPM_BUILD_ROOT%{_bindir}/stonx <<EOF
+cat > $RPM_BUILD_ROOT%{_bindir}/stonx <<'EOF'
 #!/bin/sh
 cd %{_libdir}/STonX
 
-%{?with_svga:if [ -z "\$DISPLAY" ]; then exec ./stonx -svga ; fi}
+%{?with_svga:if [ -z "$DISPLAY" ]; then exec ./stonx -svga ; fi}
 exec ./stonx
 EOF
 
@@ -76,17 +76,13 @@ rm -rf $RPM_BUILD_ROOT
 if [ -x /usr/X11R6/bin/mkfontdir ]; then
 	(cd /usr/share/fonts/misc; /usr/X11R6/bin/mkfontdir)
 fi
-if [ -f /var/lock/subsys/xfs ]; then
-	/etc/rc.d/init.d/xfs reload
-fi
+%service -q xfs reload
 
 %postun
 if [ -x /usr/X11R6/bin/mkfontdir ]; then
 	(cd /usr/share/fonts/misc; /usr/X11R6/bin/mkfontdir)
 fi
-if [ -f /var/lock/subsys/xfs ]; then
-	/etc/rc.d/init.d/xfs reload
-fi
+%service -q xfs reload
 
 %files
 %defattr(644,root,root,755)
