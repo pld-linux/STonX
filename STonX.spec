@@ -25,6 +25,7 @@ BuildRequires:	autoconf
 BuildRequires:	rpmbuild(macros) >= 1.268
 %{?with_svga:BuildRequires:	svgalib-devel}
 BuildRequires:	unzip
+Requires(post,postun):	fontpostinst
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -73,16 +74,10 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ -x /usr/X11R6/bin/mkfontdir ]; then
-	(cd /usr/share/fonts/misc; /usr/X11R6/bin/mkfontdir)
-fi
-%service -q xfs reload
+fontpostinst misc
 
 %postun
-if [ -x /usr/X11R6/bin/mkfontdir ]; then
-	(cd /usr/share/fonts/misc; /usr/X11R6/bin/mkfontdir)
-fi
-%service -q xfs reload
+fontpostinst misc
 
 %files
 %defattr(644,root,root,755)
@@ -92,4 +87,4 @@ fi
 %attr(755,root,root) %{_libdir}/STonX/stonx
 %{_libdir}/STonX/*.img
 %{_libdir}/STonX/Keysyms
-%{_fontsdir}/misc/*
+%{_fontsdir}/misc/*.pcf.gz
