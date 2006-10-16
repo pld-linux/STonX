@@ -9,7 +9,7 @@ Summary:	Atari ST on Unix/X
 Summary(pl):	Atari ST pod Uniksem/X
 Name:		STonX
 Version:	0.6.5
-Release:	1
+Release:	2
 License:	GPL (except TOS image)
 Group:		Applications/Emulators
 Source0:	http://www.complang.tuwien.ac.at/nino/stonx/%{name}-%{version}.tar.gz
@@ -19,12 +19,14 @@ Source1:	%{tosarchname}
 NoSource:	1
 Patch0:		%{name}-nox.patch
 Patch1:		%{name}-svga.patch
+Patch2:		%{name}-link.patch
+Patch3:		%{name}-segv.patch
 URL:		http://www.complang.tuwien.ac.at/nino/stonx.html
-BuildRequires:	XFree86-devel
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	rpmbuild(macros) >= 1.268
 %{?with_svga:BuildRequires:	svgalib-devel}
 BuildRequires:	unzip
+BuildRequires:	xorg-lib-libXext-devel
 Requires(post,postun):	fontpostinst
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -41,6 +43,8 @@ Uniksach z X Window System%{?with_svga: lub svgalib}.
 %setup -q -a1
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 mv -f %{tosfilename} tos.img
 
