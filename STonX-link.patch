@@ -1,0 +1,33 @@
+--- STonX-0.6.5/configure.in.orig	1996-02-09 19:02:20.000000000 +0100
++++ STonX-0.6.5/configure.in	2006-10-16 21:50:04.673744250 +0200
+@@ -44,10 +44,9 @@
+ AC_SUBST(X_CFLAGS)
+ AC_SUBST(X_LIBS)
+ AC_SUBST(X_EXTRA_LIBS)
+-AC_SUBST(X_PRE_LIBS)
+ AC_MSG_CHECKING(for MIT-SHM extension)
+ TMPLIBS=$LIBS
+-LIBS="$LIBS $X_PRE_LIBS $xlibs -lXext -lX11 $X_EXTRA_LIBS -lc"
++LIBS="$LIBS $xlibs -lXext -lX11 $X_EXTRA_LIBS -lc"
+ AC_TRY_LINK([
+ #include <X11/Xlib.h>
+ #include <X11/extensions/XShm.h>],
+--- STonX-0.6.5/Makefile.in.orig	2006-10-16 21:49:27.191401000 +0200
++++ STonX-0.6.5/Makefile.in	2006-10-16 21:50:28.903258500 +0200
+@@ -109,13 +109,13 @@
+ cpu.o:	code.c
+ 
+ stonx:	$(OBJ) $(MOREOBJ)
+-	$(CC) @static@ -o $@ $(OBJ) $(MOREOBJ) $(XLIBS) @X_PRE_LIBS@ -lXext -lX11 @X_EXTRA_LIBS@ @xtra@
++	$(CC) @static@ -o $@ $(OBJ) $(MOREOBJ) $(XLIBS) -lXext -lX11 @X_EXTRA_LIBS@ @xtra@
+ 
+ fnttobdf:	fnttobdf.o
+-	$(CC) -o $@ fnttobdf.o $(XLIBS) @X_PRE_LIBS@ -lXext -lX11 @X_EXTRA_LIBS@
++	$(CC) -o $@ fnttobdf.o $(XLIBS) -lXext -lX11 @X_EXTRA_LIBS@
+ 
+ tosfonts:	tosfonts.o
+-	$(CC) -o $@ tosfonts.o $(XLIBS) @X_PRE_LIBS@ -lXext -lX11 @X_EXTRA_LIBS@
++	$(CC) -o $@ tosfonts.o $(XLIBS) -lXext -lX11 @X_EXTRA_LIBS@
+ 
+ clean:
+ 	rm -f $(OBJ) $(MOREOBJ) stonx mon.out gmon.out fonts-done.stmp
