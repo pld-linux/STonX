@@ -1,0 +1,12 @@
+--- STonX-0.6.5/gen.c.orig	1996-01-18 03:56:40.000000000 +0100
++++ STonX-0.6.5/gen.c	2006-10-16 21:56:26.125583500 +0200
+@@ -155,7 +155,8 @@
+ 		case T_SI8:
+ 		case T_SI16:
+ 		case T_SI32:
+-			p->v[i=newvar(p)].t=t; p->v[i].id=id; return;
++			i=newvar(p);
++			p->v[i].t=t; p->v[i].id=id; return;
+ 	}
+ 	p->v[findvar(p, id)].t=t;
+ }
