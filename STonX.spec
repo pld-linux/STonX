@@ -6,7 +6,7 @@
 %define		tosfilename	Tos206.img
 
 Summary:	Atari ST on Unix/X
-Summary(pl):	Atari ST pod Uniksem/X
+Summary(pl.UTF-8):   Atari ST pod Uniksem/X
 Name:		STonX
 Version:	0.6.5
 Release:	2
@@ -35,8 +35,8 @@ STonX is a software emulator, which runs on Unix workstations with the
 X Window system%{?with_svga: or svgalib}, and emulates an Atari ST
 computer.
 
-%description -l pl
-STonX jest programowym emulatorem komputera Atari ST, dzia³aj±cym na
+%description -l pl.UTF-8
+STonX jest programowym emulatorem komputera Atari ST, dziaÅ‚ajÄ…cym na
 Uniksach z X Window System%{?with_svga: lub svgalib}.
 
 %prep
