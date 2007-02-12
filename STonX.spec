@@ -6,7 +6,7 @@
 %define		tosfilename	Tos206.img
 
 Summary:	Atari ST on Unix/X
-Summary(pl.UTF-8):   Atari ST pod Uniksem/X
+Summary(pl.UTF-8):	Atari ST pod Uniksem/X
 Name:		STonX
 Version:	0.6.5
 Release:	2
